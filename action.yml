@@ -1,0 +1,22 @@
+name: 'logsight-init-action'
+description: 'Login and create application in logsight.ai'
+inputs:
+  username:
+    description: 'Basic auth username.'
+    required: true
+  password:
+    description: 'Basic auth password.'
+    required: true
+  application_name:
+    description: 'Application name.'
+    required: true
+outputs:
+  application_id:
+    description: 'ID of the created application.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.application_name }}
