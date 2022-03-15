@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  logsight-init-action:
+    runs-on: ubuntu-latest
+    name: A job that verifies logs using logsight.ai Stage Verifier
+    steps:
+      - name: Logsight verification step
+        uses: aiops/logsight-init-action@main
+        id: verify-logs
+        with:
+          username: {{ secrets.LOGSIGHT_USERNAME }}
+          password: {{ secrets.LOGSIGHT_PASSWORD }}
+          application_id: ${{ steps.init.outputs.application-id }}
+          baseline_tag: ${{ github.event.before }}
+          compare_tag: ${{ github.sha }}
+          risk_threshold: '0'
+      - name: Get the output Verification Result
+        run: echo "The applicationId was ${{ steps.verify-logs.outputs.verification-result}}"
