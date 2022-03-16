@@ -4,6 +4,7 @@ from logsight.application import LogsightApplication
 from logsight.logs import LogsightLogs
 from logsight.compare import LogsightCompare
 import argparse
+import re
 
 # Instantiate the parser
 parser = argparse.ArgumentParser(description='Logsight Init')
@@ -20,7 +21,7 @@ app_mng = LogsightApplication(user.user_id, user.token)
 application_id = None
 
 try:
-    application_id = app_mng.create(APPLICATION_NAME)['applicationId']
+    application_id = app_mng.create(re.sub(r'\W+', '', str(APPLICATION_NAME).lower()))['applicationId']
 except logsight.exceptions.Conflict as e:
     # If application_name already exists.
     for app in app_mng.lst()['applications']:
