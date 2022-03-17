@@ -9,7 +9,36 @@ inputs:
     required: true
   application_name:
     description: 'Application name.'
-    required: true
+    required: false
+    default: {{ $github.ref }}
+  tag:
+    description: 'Tag that refers to the current version of your software (e.g., {{ $github.sha }})'
+    required: false
+    default: {{ $github.sha }}
+  fluentbit_inputname:
+    description: 'FluentBit inputs (https://docs.fluentbit.io/manual/pipeline/inputs)'
+    required: false
+    default: 'tail'
+  fluentbit_filelocation:
+    description: 'FluentBit file location if using tail as input (https://docs.fluentbit.io/manual/pipeline/inputs/tail)'
+    required: false
+    default: '/containers/*/*.log'
+  fluentbit_matchpattern:
+    description: 'FluentBit match pattern. Use * if you want match all messages (https://docs.fluentbit.io/manual/concepts/key-concepts#match)'
+    required: false
+    default: '*'
+  fluentbit_message:
+    description: 'FluentBit message string that specifies the Key that contains the log message. (e.g., if using Tail messages automatically have the Key message)'
+    required: false
+    default: 'message'
+  fluentbit_host:
+    description: 'Logsight URL. Use logsight.ai for the web service, or 127.0.0.1 for an on-premise solution'
+    required: false
+    default: 'demo.logsight.ai'
+  fluentbit_port:
+    description: 'Logsight PORT. Use 443'
+    default: '443'
+
 outputs:
   application_id:
     description: 'ID of the created application.'
@@ -20,3 +49,10 @@ runs:
     - ${{ inputs.username }}
     - ${{ inputs.password }}
     - ${{ inputs.application_name }}
+    - ${{ inputs.tag }}
+    - ${{ inputs.fluentbit_inputname }}
+    - ${{ inputs.fluentbit_filelocation }}
+    - ${{ inputs.fluentbit_matchpattern }}
+    - ${{ inputs.fluentbit_message }}
+    - ${{ inputs.fluentbit_host }}
+    - ${{ inputs.fluentbit_port }}
