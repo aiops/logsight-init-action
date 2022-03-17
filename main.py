@@ -23,6 +23,7 @@ application_id = None
 try:
     application_id = app_mng.create(re.sub(r'\W+', '', str(APPLICATION_NAME).lower()))['applicationId']
 except Exception as e:
+    print(e)
     # If application_name already exists.
     for app in app_mng.lst()['applications']:
         if app['name'] == APPLICATION_NAME:
