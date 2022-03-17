@@ -20,11 +20,15 @@ logsight.ai Stage Verifier (https://docs.logsight.ai/#/monitor_deployments/stage
   application_name:
     description: 'Application name.'
     required: false
-    default: {{ $github.ref }}
+    default: ${{ github.ref }}
   tag:
     description: 'Tag that refers to the current version of your software (e.g., {{ $github.sha }})'
     required: false
-    default: {{ $github.sha }}
+    default: ${{ github.sha }}
+  fluentbit_enable:
+    description: 'Flag that enables or disables FluentBit log collection. If disabled, please make sure you have your own input that forwards logs to logsight.ai (https://docs.logsight.ai/#/./send_logs/fluentbit).'
+    required: false
+    default: 1
   fluentbit_inputname:
     description: 'FluentBit inputs (https://docs.fluentbit.io/manual/pipeline/inputs)'
     required: false
