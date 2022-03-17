@@ -13,8 +13,6 @@ RUN pip install docker-compose
 RUN pip install logsight-sdk-py==0.1.21
 
 # copy code
-COPY ./ .
-COPY ./usr/bin/docker-compose
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
