@@ -12,3 +12,5 @@ jobs:
           username: ${{ secrets.LOGSIGHT_USERNAME }}
           password: ${{ secrets.LOGSIGHT_PASSWORD }}
           application_name: ${{ github.ref }}
+      - name: Application ID output
+        run: echo "The applicationId was ${{ steps.init.outputs.application_id}}"
