@@ -9,6 +9,6 @@ jobs:
         uses: aiops/logsight-init-action@main
         id: init
         with:
-          username: {{ secrets.LOGSIGHT_USERNAME }}
-          password: {{ secrets.LOGSIGHT_PASSWORD }}
+          username: ${{ secrets.LOGSIGHT_USERNAME }}
+          password: ${{ secrets.LOGSIGHT_PASSWORD }}
           application_name: ${{ github.ref }}
