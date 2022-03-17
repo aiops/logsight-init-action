@@ -11,5 +11,5 @@ jobs:
         with:
           username: {{ secrets.LOGSIGHT_USERNAME }}
           password: {{ secrets.LOGSIGHT_PASSWORD }}
-          application_name: ${{ github.ref }}
-          tag: ${{ github.sha }}
+          application_name: {{ github.ref }}
+          tag: {{ github.sha }}
