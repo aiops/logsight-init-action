@@ -6,14 +6,6 @@
 # Runs misspell-fixes:
 output=$(python3 /code/main.py --username $INPUT_USERNAME --password $INPUT_PASSWORD --application_name $INPUT_APPLICATION_NAME)
 status="$?"
-if ($INPUT_FLUENTBIT_ENABLE == 1)
-then
-  /bash fluentbit_config_generator.sh $INPUT_FLUENTBIT_INPUT $INPUT_FLUENTBIT_FILELOCATION $INPUT_FLUENTBIT_MATCHPATTERN $output $INPUT_TAG $INPUT_FLUENTBIT_MESSAGE $INPUT_FLUENTBIT_HOST $INPUT_FLUENTBIT_PORT $INPUT_USERNAME $INPUT_PASSWORD > fluent-bit.conf
-  cat fluent-bit.conf
-  which docker-compose
-  /docker-compose up -d
-fi
-
 #
 ## Sets the output variable for GitHub Action API:
 ## See: https://help.github.com/en/articles/development-tools-for-github-action

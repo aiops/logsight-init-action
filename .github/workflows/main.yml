@@ -3,13 +3,12 @@ on: [push]
 jobs:
   logsight-init-action:
     runs-on: ubuntu-latest
-    name: A job that initializes logsight.ai and log collection
+    name: A job that initializes logsight.ai
     steps:
       - name: Logsight init step
         uses: aiops/logsight-init-action@main
-        id: logsight-init
+        id: init
         with:
-          username: ${{ secrets.LOGSIGHT_USERNAME }}
-          password: ${{ secrets.LOGSIGHT_PASSWORD }}
+          username: {{ secrets.LOGSIGHT_USERNAME }}
+          password: {{ secrets.LOGSIGHT_PASSWORD }}
           application_name: ${{ github.ref }}
-          tag: ${{ github.sha }}

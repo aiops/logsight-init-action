@@ -1,7 +1,7 @@
 # docker build -t logsight/logsight-result-api .
 
 # set base image (host OS)
-FROM python:3.9
+FROM python:3.9-alpine
 
 ENV LDFLAGS="-L/usr/lib/x86_64-linux-gnu"
 ENV CFLAGS="-I/usr/include"
@@ -10,9 +10,9 @@ ENV CFLAGS="-I/usr/include"
 WORKDIR /code
 # install dependencies
 RUN pip install logsight-sdk-py==0.1.21
-COPY /usr/bin/bash /bash
-COPY /usr/bin/docker-compose /docker-compose
+
 # copy code
+COPY ./ .
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
