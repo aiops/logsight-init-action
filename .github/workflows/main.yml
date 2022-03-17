@@ -3,7 +3,7 @@ on: [push]
 jobs:
   logsight-init-action:
     runs-on: ubuntu-latest
-    name: A job that initializes logsight.ai and log collection.
+    name: A job that initializes logsight.ai and log collection
     steps:
       - name: Logsight init step
         uses: aiops/logsight-init-action@main
