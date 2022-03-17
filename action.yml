@@ -10,11 +10,11 @@ inputs:
   application_name:
     description: 'Application name.'
     required: false
-    default: {{ $github.ref }}
+    default: ${{ github.ref }}
   tag:
     description: 'Tag that refers to the current version of your software (e.g., {{ $github.sha }})'
     required: false
-    default: {{ $github.sha }}
+    default: ${{ github.sha }}
   fluentbit_inputname:
     description: 'FluentBit inputs (https://docs.fluentbit.io/manual/pipeline/inputs)'
     required: false
