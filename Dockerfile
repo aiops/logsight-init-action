@@ -9,7 +9,7 @@ ENV CFLAGS="-I/usr/include"
 # set the working directory in the container
 WORKDIR /code
 # install dependencies
-RUN pip install logsight-sdk-py==0.1.21
+RUN pip install --no-cache-dir logsight-sdk-py==0.1.21
 
 # copy code
 COPY ./ .
