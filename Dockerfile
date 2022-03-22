@@ -1,20 +1,11 @@
 # docker build -t logsight/logsight-result-api .
 
 # set base image (host OS)
-FROM python:3.9-slim
-
-ENV LDFLAGS="-L/usr/lib/x86_64-linux-gnu"
-ENV CFLAGS="-I/usr/include"
-
-# set the working directory in the container
-WORKDIR /code
-# install dependencies
-RUN pip install --no-cache-dir logsight-sdk-py==0.1.21
+FROM logsight/logsight-init:latest
 
 # copy code
-COPY ./ .
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]
